@@ -1,0 +1,21 @@
+DFD – LEVEL 1
+
+User
+ |
+ | Input: user_id, filters, product search
+ v
++----------------------+
+|  Streamlit Frontend  |
++----------+-----------+
+           |
+           v
++----------------------+      Loads Model      +------------------+
+|   FastAPI Backend    | --------------------> | ML Model (ALS)   |
+|  /recommend API      | <-------------------- | Predicted Items   |
++----------+-----------+     Output Scores     +------------------+
+           |
+           v
++-----------------------+
+|    Data Storage       |
+| (Products, Ratings)   |
++-----------------------+

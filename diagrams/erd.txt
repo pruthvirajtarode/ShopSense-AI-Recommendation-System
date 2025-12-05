@@ -1,0 +1,11 @@
+ENTITY RELATIONSHIP DIAGRAM (ERD)
+
++-----------+         +-----------------+         +------------------+
+|  Users    | 1     M |   Interactions  | M     1 |   Products       |
++-----------+---------+-----------------+---------+------------------+
+| user_id   |         | interaction_id  |         | product_id       |
+| name      |         | user_id         |         | description      |
+| age       |         | product_id      |         | category         |
+| gender    |         | rating          |         | price            |
++-----------+         | timestamp       |         +------------------+
+                      +-----------------+
