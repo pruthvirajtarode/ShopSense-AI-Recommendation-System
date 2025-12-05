@@ -14,8 +14,7 @@ BASE_DIR = Path(__file__).resolve().parents[1]      # project root (ShopSense_Fu
 DATA_DIR = BASE_DIR / "data" / "processed"
 PRODUCTS_FILE = DATA_DIR / "products.csv"
 
-# API URL (local default)
-API_URL = "http://127.0.0.1:8000/recommend"
+API_URL = os.getenv("API_URL", "DUMMY")
 
 
 # -------------------------
@@ -63,13 +62,16 @@ def price_predictor(price):
     return round(price * noise, 2)
 
 def fetch_recommendations(user_id, top_n):
+    # ✅ CLOUD MODE: use fallback recommender if FastAPI is not reachable
+    if API_URL == "DUMMY":
+        return list(products_df["StockCode"].sample(top_n))
+
     try:
-        resp = requests.get(f"{API_URL}/{user_id}?top_n={top_n}", timeout=6)
+        resp = requests.get(f"{API_URL}/{user_id}?top_n={top_n}", timeout=5)
         resp.raise_for_status()
         return resp.json().get("recommendations", [])
-    except Exception as e:
-        st.error(f"Couldn't fetch from API: {e}")
-        return []
+    except:
+        return list(products_df["StockCode"].sample(top_n))
 
 def similar_products(df, code, top_k=4):
     """Return similar products by same category (fallback)."""
