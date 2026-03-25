@@ -35,7 +35,7 @@ try:
 except Exception as e:
     print(f"❌ Error loading products: {e}")
 
-@app.get("/")
+@app.get("/api/status")
 def home():
     return {
         "status": "online",
