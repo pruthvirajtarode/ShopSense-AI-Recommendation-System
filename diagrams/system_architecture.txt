@@ -1,0 +1,31 @@
+SYSTEM ARCHITECTURE DIAGRAM
+
+             +-----------------------+
+             |      Users            |
+             |  (Browser / Client)   |
+             +-----------+-----------+
+                         |
+                         v
+              +-----------------------+
+              |   Streamlit Frontend |
+              | (UI, Charts, Reports)|
+              +-----------+-----------+
+                          |
+                          v
+              +------------------------+
+              |     FastAPI Backend    |
+              |  (Recommendation API)  |
+              +-----------+------------+
+                          |
+                          v
+        +-----------------------------------------+
+        |      Machine Learning Layer (ALS)       |
+        |  Model Loading, Prediction, Similarity  |
+        +------------------+----------------------+
+                           |
+                           v
+              +------------------------------+
+              |     Processed Data Storage   |
+              | products.csv, interactions   |
+              | cleaned.csv, user_item_matrix|
+              +------------------------------+

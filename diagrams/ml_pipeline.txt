@@ -1,0 +1,36 @@
+MACHINE LEARNING PIPELINE DIAGRAM
+
+Raw Data
+   |
+   v
++------------------+
+| Data Cleaning    |
+| Missing values   |
+| Normalization    |
++------------------+
+   |
+   v
++----------------------------+
+| User-Item Matrix Creation  |
++----------------------------+
+   |
+   v
++----------------------------+
+| ALS Training Process       |
+| Hyperparameters tuning     |
++----------------------------+
+   |
+   v
++----------------------------+
+| Model Export (.pkl file)   |
++----------------------------+
+   |
+   v
++---------------------------+
+| FastAPI Inference Layer   |
++---------------------------+
+   |
+   v
++---------------------------+
+| Streamlit UI Display      |
++---------------------------+
